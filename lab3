@@ -1,0 +1,612 @@
+///////часть 1//////
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace lab3
+{
+    class Variant4
+    {
+        // Поля класса
+        public int Day, Month, Year;
+
+        // Метод, выводящий в консоль введенную информацию
+        public void writeInConsoleInfo(int day, int month, int year)
+        {
+            Console.WriteLine("\nИзначальные данные:\nДень: {0}\nМесяц: {1}\nГод: {2}\n", day, month, year);
+        }
+
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Создаем объект типа Variant4
+            Variant4 Number1 = new Variant4();
+
+            Number1.Day = 66;
+            Number1.Month = 4;
+            Number1.Year = 1997;
+
+            Console.WriteLine("После проверки на правильность:");
+
+            //проверка корректности дня
+            if ((Number1.Day < 31) && (Number1.Day > 1))
+                Console.WriteLine("день введен корректно");
+            else
+                Console.WriteLine("неправильные данные дня (1-31)");
+
+            //проверка корректности месяца
+            if ((Number1.Month < 12) && (Number1.Month > 1))
+                Console.WriteLine("месяц введен корректно");
+            else
+                Console.WriteLine("неправильные данные месяца (1- 12)");
+
+            //проверка корректности месяца
+            if (Number1.Year % 1 == 0)
+                Console.WriteLine("год введен корректно");
+            else
+                Console.WriteLine("неправильные данные года (целое число)");
+
+            Number1.writeInConsoleInfo(Number1.Day, Number1.Month, Number1.Year);
+
+            // констр
+            MyClass ex = new MyClass("Anton", 14);
+            ex.reWrite();
+
+
+            // по умолчанию 
+
+
+
+            Person person = new Person();
+
+            Console.WriteLine("Name: {0}, Age: {1}", person.name, person.age);
+            // Keep the console window open in debug mode.
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
+            Console.ReadLine();
+
+
+
+			// статистический конструктор
+
+
+			int r = 10;
+			// Вызов методов из другого класса
+			// без создания экземпляра объекта этого класса
+			Console.WriteLine("Площадь круга радиусом {0} = {1:#.##}", r, myCircle.SqrCircle(r));
+			Console.WriteLine("Длина круга равна {0:#.##}", myCircle.LongCircle(r));
+
+			Console.ReadLine();
+
+
+
+            //закрытые конструкторы 
+
+
+
+
+            // If you uncomment the following statement, it will generate
+            // an error because the constructor is inaccessible:
+            // Counter aCounter = new Counter();   // Error
+
+            Counter.currentCount = 100;
+            Counter.IncrementCount();
+            Console.WriteLine("New count: {0}", Counter.currentCount);
+        }
+        
+
+
+
+        //константы 
+
+
+        //Для объявления константного поля или константной локальной используется 
+        //ключевое слово const. Константные поля и локальные не являются переменными 
+        //и не могут быть изменены. Константы могут быть числами, логическими значениями,
+        //строками или нулевыми ссылками. Не создавайте константу для предоставления сведений, 
+        //которые могут измениться в любое время. Например, не используйте константное поле для 
+        //хранения цены услуги, номера версии продукта или торгового названия компании. 
+        //Эти значения могут со временем измениться, а поскольку константы распространяются 
+        //компиляторами, для отражения изменений потребуется повторная компиляция остальных кодов, 
+        //скомпилированных с использованием ваших библиотек.
+        public const int c1 = 5;
+        public const int c2 = c1 + 100;
+
+
+
+    }
+
+
+
+
+
+
+
+    //конструкторы 
+
+    class MyClass
+    {
+        public string Name;
+        public byte Age;
+
+        // Создаем параметрический конструктор
+        public MyClass(string s, byte b)
+        {
+            Name = s;
+            Age = b;
+        }
+
+        public void reWrite()
+        {
+            Console.WriteLine("Имя: {0}\nВозраст: {1}", Name, Age);
+        }
+    }
+
+    //по умолчанию
+
+
+    //Конструктор, который не принимает никаких параметров, называется конструктором по умолчанию. 
+    //Конструкторы по умолчанию вызываются всякий раз, когда создается экземпляр объекта с помощью оператора new,
+    //а аргументы в new не передаются.
+    //Если класс является статическим, компилятор C# выделяет классам без конструкторов открытый 
+    //конструктор по умолчанию, позволяющий создавать экземпляры классов.
+
+    public class Person
+    {
+        public int age;
+        public string name;
+    }
+
+
+
+	//статический конструктор
+
+
+
+	//Статический конструктор используется для инициализации любых
+	//статических данных или для выполнения определенного действия, 
+	//которое требуется выполнить только один раз. 
+	// Он вызывается автоматически перед созданием первого экземпляра или ссылкой на какие-либо статические члены.
+
+	//Иногда требуется определить такой член класса, который будет использоваться
+    //независимо от всех остальных объектов этого класса.Как правило, доступ к 
+    //члену класса организуется посредством объекта этого класса, но в то же
+    //время можно создать член класса для самостоятельного применения без 
+    //ссылки на конкретный экземпляр объекта.Для того чтобы создать такой член
+    //класса, достаточно указать в самом начале его объявления ключевое слово static.
+
+    //Если член класса объявляется как static, то он становится доступным до создания 
+    //любых объектов своего класса и без ссылки на какой-нибудь объект.С помощью 
+    //ключевого слова static можно объявлять как переменные, так и методы.Наиболее 
+    //характерным примером члена типа static служит метод Main(), который объявляется 
+    //таковым потому, что он должен вызываться операционной системой в самом начале выполняемой программы.
+    class myCircle
+    {
+        // 2 метода, возвращающие площадь и длину круга
+        public static double SqrCircle(int radius)
+        {
+            return Math.PI * radius * radius;
+        }
+
+        public static double LongCircle(int radius)
+        {
+            return 2 * Math.PI * radius;
+        }
+    }
+
+    //закрытые 
+
+
+    //Закрытый конструктор — это особый конструктор экземпляров. Обычно он используется в классах, 
+    //содержащих только статические элементы. Если в классе один или несколько закрытых конструкторов и 
+    //ни одного открытого конструктора, 
+    //то прочие классы (за исключением вложенных классов) не смогут создавать экземпляры этого класса. 
+    public class Counter
+    {
+        private Counter() { }
+        public static int currentCount;
+        public static int IncrementCount()
+        {
+            return ++currentCount;
+        }
+
+
+
+        //readonly
+
+
+        class Age
+        {
+            readonly int _year;
+            Age(int year)
+            {
+                _year = year;
+            }
+            void ChangeYear()
+            {
+                //_year = 1967; // Compile error if uncommented.
+            }
+
+            //get
+
+
+            //Ключевое слово get определяет метод доступа в свойстве или
+            //индексаторе, который возвращает значение свойства или элемент индексатора.
+            //В приведенном примере определен как метод доступа get, так и метод доступа set
+            //для свойства с именем Seconds. Для возвращения значения свойства в нем используется закрытое поле с именем _seconds.
+
+            //Ключевое слово set определяет метод доступа в свойстве или индексаторе, 
+            //который присваивает значение свойству или элементу индексатора.
+
+            class TimePeriod
+            {
+                private double _seconds;
+
+                public double Seconds
+                {
+                    get { return _seconds; }
+                    set { _seconds = value; }
+                }
+            }
+
+
+
+
+		
+		
+
+        }
+    }
+}
+
+///////////часть 2//////////
+            
+
+
+using System;
+
+namespace lab3_2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            School school = new School();
+            University university = new University();
+
+            school.Learn();
+            university.Learn();
+
+            Console.Read();
+        }
+    }
+    abstract class Education
+    {
+        public void Learn()
+        {
+            Enter();
+
+
+
+        }
+        public abstract void Enter();
+
+
+
+    }
+
+    class School : Education
+    {
+        public override void Enter()
+        {
+            Console.WriteLine("печать");
+        }
+
+
+    }
+
+    class University : Education
+    {
+        public override void Enter()
+        {
+            int day = 21;
+            long year = 1983;
+            string mesyac;
+            int m = 4;
+            Console.WriteLine(day);
+            switch (m)
+            {
+                case 1:
+                     mesyac = "января";
+					Console.WriteLine(mesyac);
+                    break;
+                case 2:
+                     mesyac = "февраля";
+					Console.WriteLine(mesyac);
+                    break;
+                case 3:
+                     mesyac = "марта";
+					Console.WriteLine(mesyac);
+                    break;
+                case 4:
+                     mesyac = "апреля";
+					Console.WriteLine(mesyac);
+                    break;
+                case 5:
+                     mesyac = "мая";
+					Console.WriteLine(mesyac);
+                    break;
+                case 6:
+                     mesyac = "июня";
+					Console.WriteLine(mesyac);
+                    break;
+                case 7:
+                     mesyac = "июля";
+					Console.WriteLine(mesyac);
+                    break;
+                case 8:
+                     mesyac = "августа";
+					Console.WriteLine(mesyac);
+                    break;
+                case 9:
+                     mesyac = "сентября";
+					Console.WriteLine(mesyac);
+                    break;
+                case 10:
+                     mesyac = "октября";
+					Console.WriteLine(mesyac);
+                    break;
+                case 11:
+                     mesyac = "ноября";
+					Console.WriteLine(mesyac);
+                    break;
+                case 12:
+                     mesyac = "декабря";
+					Console.WriteLine(mesyac);
+                    break;
+                default:
+                    Console.WriteLine("ошибка");
+                    break;
+
+                   
+            }
+
+			Console.WriteLine( year + " " + "года");
+            Console.WriteLine(m+"/"+day+"/"+year);
+        }
+    }
+}
+ 
+//////////часть 3//////
+
+using System;
+
+namespace lab3_3
+{
+    class MainClass
+    {
+
+
+        //Модификатор static используется для объявления статического члена, 
+        //принадлежащего собственно типу, а не конкретному объекту. 
+        //Модификатор static можно использовать с классами, полями, методами, 
+        //свойствами, операторами, событиями и конструкторами, но нельзя — 
+        //с индексаторами, методами завершения или типами, отличными от классов.
+
+
+        public static void Main(string[] args)
+        {
+            //ref
+
+            // При использовании в списке параметров метода ключевое слово ref указывает на то, 
+            //что аргумент передается по ссылке, а не по значению. Эффект передачи по ссылке в том, 
+            //что все изменения аргумента в вызываемом методе отражаются в вызывающем методе.
+            //Например, если вызывающий объект передает выражение локальной переменной или 
+            //выражение доступа к элементу массива и вызванный метод заменяет объект, 
+            //на который ссылается параметр ref, то локальная переменная или элемент массива 
+            //взывающего объекта будет ссылаться на новый объект после возврата из метода.
+            //Начальные значения переменных a и b
+            int a = 5;
+            int b = 6;
+            Console.WriteLine("Начальное значение переменной a  = {0}", a);
+            //Передача переменных по значению
+            //После выполнения этого кода по-прежнему a = 5, так как мы передали лишь ее копию
+            AdditionVal(a, b);
+            Console.WriteLine("Переменная a после передачи по значению равна = {0}", a);
+
+            //Передача переменных по ссылке
+            //После выполнения этого кода a = 11, так как мы передали саму переменную
+            AdditionRef(ref a, b);
+            Console.WriteLine("Переменная a после передачи ссылке по значению равна = {0}", a);
+
+            //equals
+            Person person1a = new Person("John");
+            Person person1b = person1a;
+            Person person2 = new Person(person1a.ToString());
+
+            Console.WriteLine("Calling Equals:");
+            Console.WriteLine("person1a and person1b: {0}", person1a.Equals(person1b));
+            Console.WriteLine("person1a and person2: {0}", person1a.Equals(person2));
+
+            Console.WriteLine("\nCasting to an Object and calling Equals:");
+            Console.WriteLine("person1a and person1b: {0}", ((object)person1a).Equals((object)person1b));
+            Console.WriteLine("person1a and person2: {0}", ((object)person1a).Equals((object)person2));
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+        //ref
+        static void AdditionRef(ref int x, int y)
+        {
+            x = x + y;
+            Console.WriteLine("x + y = {0}", x);
+        }
+        // передача по значению
+        static void AdditionVal(int x, int y)
+        {
+            x = x + y;
+            Console.WriteLine("x + y = {0}", x);
+        }
+
+
+
+
+        //Можно разделить определение класса или структуры, интерфейса 
+        //или метода между двумя или более исходными файлами. 
+        //Каждый исходный файл содержит часть определения класса или метода, 
+        //а во время компиляции приложения все части объединяются.
+
+
+        //Разделяемые классы
+        //Существует несколько ситуаций, когда желательно разделение определения класса.
+        //При работе над большими проектами распределение класса между различными файлами 
+        //позволяет нескольким программистам работать с ним одновременно.
+        //При работе с использованием автоматически создаваемого источника код можно добавлять
+        //в класс без повторного создания файла источника.Visual Studio использует
+        //этот подход при создании форм Windows Forms, кода оболочки веб-службы и
+        //т. д.Можно создать код, который использует эти классы, без необходимости 
+        //изменения файла, созданного в Visual Studio.
+        //Чтобы разделить определение класса, используйте модификатор ключевого слова partial, как показано ниже:
+
+        public partial class Employee
+        {
+            public void DoWork()
+            {
+            }
+        }
+
+        public partial class Employee
+        {
+            public void GoToLunch()
+            {
+            }
+        }
+
+        //Ключевое слово partial указывает, что другие части класса, 
+        // структуры или интерфейса могут быть определены в пространстве имен. 
+        // Все части должны использовать ключевое слово partial.
+        //  Для формирования окончательного типа все части должны быть доступны во время компиляции. 
+        //  Все части должны иметь одинаковые модификаторы доступа, например public, private и т. д.
+
+
+
+        //equals object
+
+        //Определяет, равен ли заданный объект текущему объекту.
+
+        public class Person
+        {
+            private string personName;
+
+            public Person(string name)
+            {
+                this.personName = name;
+            }
+
+            public override string ToString()
+            {
+                return this.personName;
+            }
+        }
+
+
+
+    }
+}
+//////часть 4/////
+
+using System;
+
+namespace lab3_4
+{
+    class MainClass
+    {
+		static void Main(string[] args)
+		{
+
+			//Чтобы сделать параметр выходным, перед ним ставится модификатор out
+
+			//По сути, как и в случае с ключевым словом ref, ключевое слово out 
+            //применяется для для передачи аргументов по ссылке. Однако в отличие от ref 
+            //для переменных, которые передаются с ключевым словам out, не 
+            //требуется инициализация. И кроме того, вызываемый метод должен обязательно присвоить им значение.
+			int x = 10;
+			int area;
+			int perimetr;
+			GetData(x, 15, out area, out perimetr);
+			Console.WriteLine("Площадь : " + area);
+			Console.WriteLine("Периметр : " + perimetr);
+
+
+			//Метод ToString служит для получения строкового представления 
+			//данного объекта. Для базовых типов просто будет выводиться их строковое значение:
+
+			int i = 5;
+			Console.WriteLine(i.ToString()); // выведет число 5
+
+			double d = 3.5;
+			Console.WriteLine(d.ToString()); // выведет число 3,5
+
+
+
+			//анонимный тип
+
+			var user = new { Name = "Tom", Age = 34 };
+			Console.WriteLine(user.Name);
+
+		}
+		static void GetData(int x, int y, out int area, out int perim)
+		{
+			area = x * y;
+			perim = (x + y) * 2;
+		}
+
+
+
+
+		//Что такое хеш-код?
+
+		//Если очень просто, то хеш-код — это число. На самом деле просто, 
+		//не так ли? Если более точно, то это битовая строка 
+		//фиксированной длины, полученная из массива произвольной длины
+
+		class Person
+		{
+			public string Name { get; set; }
+
+			public override int GetHashCode()
+			{
+				return Name.GetHashCode();
+			}
+		}
+
+	}
+}
+
+
+
+
+
+
+
+
+
+    
+
+       
+
